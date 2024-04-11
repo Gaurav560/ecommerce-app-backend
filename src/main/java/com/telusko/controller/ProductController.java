@@ -1,6 +1,6 @@
 package com.telusko.controller;
 
-import com.telusko.model.ProductDTO;
+import com.telusko.model.Product;
 import com.telusko.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 
 import java.util.List;
 
@@ -23,8 +22,8 @@ ProductController {
     private ProductService productService;
 
     @GetMapping("/products")
-    public ResponseEntity<List<ProductDTO>> getAllProducts() {
-        List<ProductDTO> productDTOList = productService.getAllProductDTOs();
-        return new ResponseEntity<>(productDTOList, HttpStatus.OK);
+    public ResponseEntity<List<Product>> getAllProducts() {
+        List<Product> productList = productService.getAllProducts();
+        return new ResponseEntity<>(productList, HttpStatus.OK);
     }
 }
