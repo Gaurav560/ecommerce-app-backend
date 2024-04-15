@@ -8,4 +8,5 @@ CREATE TABLE IF NOT EXISTS product (
     stock_quantity INTEGER,
     release_date DATE,
     is_active BOOLEAN
+
     );
