@@ -42,7 +42,7 @@ public class ImageService {
     public byte[] downloadImage(Integer id) {
         Optional<Image> optionalImage = imageRepo.findById(id);
         if (optionalImage.isPresent()) {
-            return optionalImage.get().getImageData();
+            return  ImageUtils.decompressImage(optionalImage.get().getImageData());
         } else {
             return null;
         }
