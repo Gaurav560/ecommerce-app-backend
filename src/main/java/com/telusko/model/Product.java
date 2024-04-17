@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.Base64;
 import java.util.Date;
 
 @Entity
@@ -14,7 +15,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class Product {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
@@ -30,13 +31,16 @@ public class Product {
 
     private String category;
 
+    private Date releaseDate;
+    private boolean productAvailable;
     private int stockQuantity;
 
-    private Date releaseDate;
 
-    private boolean isActive;
+    //product image details
+    private String imageName;
+    private String imageType;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "image_id", referencedColumnName = "id")
-    private Image image;
+    @Lob
+    private byte[] imageData;
+
 }
