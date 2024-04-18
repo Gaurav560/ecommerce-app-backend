@@ -36,7 +36,7 @@ public class ProductController {
     }
 
 
-    @PostMapping("/products")
+    @PostMapping("/product")
     public ResponseEntity<?> createProduct(@RequestPart("product") Product product,
                                            @RequestPart("imageFile") MultipartFile imageFile) {
         try {
