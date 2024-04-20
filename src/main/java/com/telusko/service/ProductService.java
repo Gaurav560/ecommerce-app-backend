@@ -9,4 +9,6 @@ public interface ProductService {
     List<Product> getAllProducts();
     Product getProductById(Integer id);
     Product createProduct(Product product, MultipartFile imageFile) throws Exception;
+    Product updateProduct(Integer id, Product product, MultipartFile imageFile) throws Exception;
+    void deleteProduct(Integer id);
 }

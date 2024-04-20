@@ -34,4 +34,32 @@ public class ProductServiceImpl implements ProductService {
         }
         return productRepo.save(product);
     }
+
+    @Override
+    public Product updateProduct(Integer id, Product product, MultipartFile imageFile) throws Exception {
+        Product existingProduct = productRepo.findById(id)
+                .orElseThrow(() -> new Exception("Product not found with id: " + id));
+
+        existingProduct.setName(product.getName());
+        existingProduct.setDescription(product.getDescription());
+        existingProduct.setBrand(product.getBrand());
+        existingProduct.setPrice(product.getPrice());
+        existingProduct.setCategory(product.getCategory());
+        existingProduct.setReleaseDate(product.getReleaseDate());
+        existingProduct.setProductAvailable(product.isProductAvailable());
+        existingProduct.setStockQuantity(product.getStockQuantity());
+
+        if (imageFile != null && !imageFile.isEmpty()) {
+            existingProduct.setImageName(imageFile.getOriginalFilename());
+            existingProduct.setImageType(imageFile.getContentType());
+            existingProduct.setImageData(imageFile.getBytes());
+        }
+
+        return productRepo.save(existingProduct);
+    }
+
+    @Override
+    public void deleteProduct(Integer id) {
+        productRepo.deleteById(id);
+    }
 }
